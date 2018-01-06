@@ -1,0 +1,8 @@
+<% include partials/header %>
+    <h1>Hello <%= title %></h1>
+    <ul>
+        <% cars.forEach(function(car){ %>
+            <li><%= car.name %> : <%= car.country %></li>
+        <% }); %>
+    </ul>
+<% include partials/footer %>
