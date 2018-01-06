@@ -21,9 +21,22 @@ app.use(bodyParser.urlencoded({extended:false}));
 // set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.get('/', (req, res) => {
-	res.send('hello world');
+	res.send('hello world!!');
 });
+
+/* Parse JSON
+let cars = [
+	{name: 'audi', country: 'german'},
+	{name: 'bmw', country: 'german'},
+	{name: 'hyundai', country: 'korean'}
+]
+
+app.get('/', (req, res) => {
+	res.json(cars);
+});
+*/
 
 app.listen(port, () => {
 	console.log('Server started on ', port);
