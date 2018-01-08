@@ -45,6 +45,14 @@ app.get('/', (req, res) => {
 	});
 });
 
+app.post('/cars/add', (req,res) => {
+	let newCar = {
+		name: req.body.carName,
+		country: req.body.carCountry
+	}
+	console.log(newCar);
+});
+
 app.listen(port, () => {
 	console.log('Server started on ', port);
 })

@@ -1,4 +1,11 @@
 <% include partials/header %>
+    <form action="./cars/add" method="POST">
+        <label for="carName">Name: </label> <br>
+        <input type="text" name="carName"> <br>
+        <label for="carCountry">Country: </label> <br>
+        <input type="text" name="carCountry"> <br>
+        <input type="submit" value="Add">
+    </form>
     <h1>Hello <%= title %></h1>
     <ul>
         <% cars.forEach(function(car){ %>
