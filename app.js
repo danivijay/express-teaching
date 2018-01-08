@@ -25,6 +25,12 @@ app.use(bodyParser.urlencoded({extended:false}));
 // set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Global vars
+app.use((req, res, next) => {
+	res.locals.errors = null;
+	next();
+})
+
 //sample object
 let cars = [
 	{name: 'audi', country: 'german'},
@@ -46,11 +52,29 @@ app.get('/', (req, res) => {
 });
 
 app.post('/cars/add', (req,res) => {
-	let newCar = {
-		name: req.body.carName,
-		country: req.body.carCountry
+	let errors = new Array();
+	if(!req.body.carName || req.body.carName == '') {
+		errors.push("Car Name is required");
 	}
-	console.log(newCar);
+	if(!req.body.carCountry || req.body.carCountry == '') {
+		errors.push("Country is required");
+	}
+
+	if(errors.length > 0){
+		res.render('index', {
+			title: 'Dani',
+			cars: cars,
+			errors: errors
+		});
+	}
+	else {
+		let newCar = {
+			name: req.body.carName,
+			country: req.body.carCountry
+		}
+		console.log('SUCCESS');
+	}
+	
 });
 
 app.listen(port, () => {
